@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import postRequest from "./postRequest";
-export default function Resgister() {
+export default function Resgister(props) {
   
 
-  const [userName, setUserName] = useState("");
+  const [userR, setUserR]=useState("")
   const [password, setPassword] = useState("");
 const [error, setError] =useState(null)
 
@@ -14,7 +14,7 @@ const [error, setError] =useState(null)
     event.preventDefault();
     if (validatePassword === password){
     const userObj={
-        userName:userName,
+        userName:userR,
         password:password
     
       }
@@ -27,7 +27,7 @@ const [error, setError] =useState(null)
       }
       else{
         setError("good")
-    
+        props.setUserName(userR);
  
     } }
 
@@ -41,9 +41,9 @@ const [error, setError] =useState(null)
         Enter your user-name:
         <input
           type="text"
-          name="username"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          name="userR"
+          value={userR}
+          onChange={(e) => setUserR(e.target.value)}
           required
         />
       </label>

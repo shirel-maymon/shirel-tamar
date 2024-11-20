@@ -3,9 +3,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var LogIn = require('./routes/LogIn')
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 var register = require('./routes/register')
+var home = require('./routes/home')
 var app = express();
 const cors = require("cors");
 app.use(cors())
@@ -16,6 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/logIn', LogIn);
 app.use('/register', register)
+app.use('/home', home)
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 

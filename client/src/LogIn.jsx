@@ -8,11 +8,11 @@ function LogIn(props) {
 
   const [password, setPassword] = useState("");
   const [error, setError]= useState(null)
-
+ const [user, setUser]= useState("")
   const handleSubmit =async (e) => {
     e.preventDefault();
   const userObj={
-    userName:props.userName,
+    userName:user,
     password:password
 
   }
@@ -25,6 +25,7 @@ function LogIn(props) {
   }
   else{
     setError("good")
+    props.setUserName(user);
 
   }
   
@@ -45,7 +46,7 @@ function LogIn(props) {
             <input
               type="text"
               value={props.userName}
-              onChange={(e) => props.setUserName(e.target.value)}
+              onChange={(e) => setUser(e.target.value)}
               required
             />
             <br />
