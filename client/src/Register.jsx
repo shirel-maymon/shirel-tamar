@@ -18,7 +18,7 @@ const [error, setError] =useState(null)
         password:password
     
       }
-      const url= `http://localhost:3002/register`
+      const url= `http://localhost:4001/register`
       const currentUser= await postRequest(userObj, url);
       console.log(currentUser)
       if(currentUser==="something went wrong"){

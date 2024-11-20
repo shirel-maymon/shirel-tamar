@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 const fs2 = require('node:fs');
+const path = require('path');
 function contactExsit(body) {
     const files = fs.readdirSync('./contacts');
     console.log('files: ', files);
@@ -16,7 +17,8 @@ function contactExsit(body) {
 router.post('/', (req, res,) => {
     const nameExist = contactExsit(req.body)
     if (!nameExist) {
-    fs.mkdirSync(req.body.userName, {recursive:true})  
+        console.log("path.join(req.body.userName, 'contacts',{recursive:true}): ", path.join(req.body.userName, 'contacts'));
+    fs.mkdirSync(path.join("contacts", req.body.userName)  )
     res.send(req.body)
     }
     else {

@@ -16,7 +16,7 @@ function LogIn() {
     password:password
 
   }
-  const url= `http://localhost:3002/logIn`
+  const url= `http://localhost:4001/logIn`
   const currentUser= await postRequest(userObj, url);
   console.log(currentUser)
   if(currentUser==="something went wrong"){
