@@ -6,11 +6,13 @@ import LogIn from './LogIn'
 import Resgister from './Register'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userName, setUserName] = useState("");
 
   return (
- <Resgister/>
-//  <LogIn/>
+    <>
+ <Resgister userName={userName} setUserName={setUserName}/>
+ <LogIn userName={userName} setUserName={setUserName}/>
+ </>
 
   )
 }

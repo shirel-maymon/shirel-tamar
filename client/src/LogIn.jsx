@@ -3,16 +3,16 @@ import { NavLink } from "react-router-dom";
 import  postRequest from "./postRequest";
 // import { useNavigate } from "react-router-dom";
 
-function LogIn() {
+function LogIn(props) {
   // const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+
   const [password, setPassword] = useState("");
   const [error, setError]= useState(null)
 
   const handleSubmit =async (e) => {
     e.preventDefault();
   const userObj={
-    userName:userName,
+    userName:props.userName,
     password:password
 
   }
@@ -44,8 +44,8 @@ function LogIn() {
             </label>
             <input
               type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              value={props.userName}
+              onChange={(e) => props.setUserName(e.target.value)}
               required
             />
             <br />
