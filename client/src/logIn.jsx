@@ -8,12 +8,17 @@ function LogIn({ isConnected, setIsConnected }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(
-        // לחזור לפה אחר כך 
-    )
+  
+    const logInServer = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userName, password }),
+    };
+  
+    fetch("http://localhost:3000/logIn", logInServer) 
       .then((response) => {
         if (!response.ok) {
-          throw new Error("sorry!, There is a problem");
+          throw new Error("Sorry! There is a problem with the server.");
         }
         return response.json();
       })
@@ -37,6 +42,7 @@ function LogIn({ isConnected, setIsConnected }) {
         alert(`Error: ${error.message}`);
       });
   };
+  
 
   return (
     <>
