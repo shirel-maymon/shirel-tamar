@@ -1,47 +1,35 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import  postRequest from "./postRequest";
+// import { useNavigate } from "react-router-dom";
 
-function LogIn({ isConnected, setIsConnected }) {
+function LogIn() {
+  // const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [id, setId] = useState("");
+  const [error, setError]= useState(null)
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  const userObj={
+    userName:userName,
+    password:password
+
+  }
+  const url= `http://localhost:3007/logIn`
+  const currentUser= postRequest(userObj, url);
+  console.log(currentUser)
+  if(currentUser.status===200){
+    // navigate (`/contact/${userName}`)
+    setError("good")
+  }
+  else{
+    setError("this user does not exist")
+  }
   
-    const logInServer = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userName, password }),
-    };
   
-    fetch("http://localhost:3000/logIn", logInServer) 
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Sorry! There is a problem with the server.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Response from server:", data);
-        if (data.length > 0) {
-          localStorage.setItem(
-            "currentUser",
-            JSON.stringify({
-              userName: userName,
-              password: password,
-              id: data[0].id,
-            })
-          );
-          setIsConnected(true);
-        } else {
-          alert("User not found or incorrect credentials");
-        }
-      })
-      .catch((error) => {
-        alert(`Error: ${error.message}`);
-      });
-  };
+
+  }
   
 
   return (
@@ -79,11 +67,12 @@ function LogIn({ isConnected, setIsConnected }) {
             <br />
             <br />
           </div>
-          <NavLink to="/SignUp" className="button">
+          {/* <NavLink to="/SignUp" className="button">
             Sign Up
-          </NavLink>
+          </NavLink> */}
         </form>
       </div>
+      <div>{error}</div>
     </>
   );
 }
