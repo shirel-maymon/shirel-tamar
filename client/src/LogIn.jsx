@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import  postRequest from "./postRequest";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LogIn(props) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
   const [error, setError]= useState(null)
@@ -25,6 +25,7 @@ function LogIn(props) {
   }
   else{
     setError("good")
+    navigate("Home");
     props.setUserName(user);
 
   }
@@ -45,7 +46,7 @@ function LogIn(props) {
             </label>
             <input
               type="text"
-              value={props.userName}
+              value={user}
               onChange={(e) => setUser(e.target.value)}
               required
             />

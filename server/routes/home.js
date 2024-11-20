@@ -6,7 +6,7 @@ const fs2 = require('node:fs');
 function contactExsit(name) {
     const files = fs.readdirSync('./contacts');
     console.log('files: ', files);
-    boolfile=files.find(file=> file===body.userName)
+     const boolfile=files.find(file=> file===name)
     
         if (!boolfile)
             return false;
@@ -22,7 +22,7 @@ router.get('/:name', (req, res,) => {
     }
     const filesName = fs.readdirSync(`./contacts/${req.params.name}`);
     console.log(filesName)
-     res.send(req.body)
+     res.send(filesName)
     
 });
 
