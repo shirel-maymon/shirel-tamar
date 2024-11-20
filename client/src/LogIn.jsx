@@ -9,22 +9,23 @@ function LogIn() {
   const [password, setPassword] = useState("");
   const [error, setError]= useState(null)
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
   const userObj={
     userName:userName,
     password:password
 
   }
-  const url= `http://localhost:3007/logIn`
-  const currentUser= postRequest(userObj, url);
+  const url= `http://localhost:3002/logIn`
+  const currentUser= await postRequest(userObj, url);
   console.log(currentUser)
-  if(currentUser.status===200){
-    // navigate (`/contact/${userName}`)
-    setError("good")
+  if(currentUser==="something went wrong"){
+    setError("this user does not exist")
+    
   }
   else{
-    setError("this user does not exist")
+    setError("good")
+
   }
   
   

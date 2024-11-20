@@ -20,7 +20,7 @@ router.post('/', (req, res,) => {
     res.send(req.body)
     }
     else {
-        return res.status(404).send("name already exist")
+        return res.status(400).send("name already exist")
     }
 });
 

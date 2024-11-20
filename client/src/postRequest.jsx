@@ -9,6 +9,8 @@
         const request = await fetch(url, postOptions)
         if(!request.ok)throw Error ("something went wrong")
             const  requestJSON= await request.json();
+        
+        console.log('requestJSON: ', requestJSON);
             return requestJSON;
 
     }

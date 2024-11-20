@@ -12,13 +12,13 @@ function contactExsit(body) {
             return false;
 
    
-    return false;
+    return true;
 }
 
 router.post('/', (req, res,) => {
     const isExist = contactExsit(req.body)
     if (!isExist) {
-        return res.status(404).send("please register")
+        return res.status(400).send("please register")
     }
     
      res.send(req.body)
@@ -26,3 +26,8 @@ router.post('/', (req, res,) => {
 });
 
 module.exports = router;
+
+    
+
+
+
