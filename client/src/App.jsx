@@ -6,6 +6,7 @@ import LogIn from './LogIn'
 import Resgister from './Register'
 import Home from './Home'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import ShowFile from './ShowFile'
 function App() {
   const [userName, setUserName] = useState("");
 
@@ -21,6 +22,7 @@ function App() {
         <Route index element={<LogIn userName={userName} setUserName={setUserName}/>} />
 
         <Route path="home" element={<Home userName={userName} setUserName={setUserName}/>}/>
+        <Route path = "ShowFiles" element={<ShowFile userName={userName}/>}/>
         
         </Route>
 
