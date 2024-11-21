@@ -26,8 +26,8 @@ function Home(props) {
     <>
     <body>
   <div id="navbar">
-    <div className='font' id="site-name">shimar Drive</div>
-    <div className='font' id="user-name">Hello, {props.userName}</div>
+    <div className='font' id="site-name">shimar Drive </div>
+    <div className='font' id="user-name">Hello, {props.userName}    <span class="star">★</span></div>
   </div>
   <div id="container">
   <h1>All your files and folders:</h1>
