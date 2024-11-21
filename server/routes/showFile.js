@@ -30,4 +30,20 @@ router.get('/:name/:file', (req, res,) => {
      res.send(content)
     
 });
+router.delete('/:name/:file', (req, res,) => {
+    const isExist = contactExsit(req.params.name, req.params.file)
+    // const deleted=false
+    if (!isExist) {
+        return res.status(400).send("file not exist")
+    }
+    fs.rm(`./contacts/${req.params.name}/${req.params.file}`, function (err) {
+        if (err) res.status(400).send("file did not deleted");
+        // delted=true;
+        res.send("deleted");
+       
+      });
+   
+
+    
+});
 module.exports = router;
