@@ -67,6 +67,7 @@ input[type="text"], input[type="password"] {
   border: 1px solid #A6AEBF;
   border-radius: 5px;
   background-color: #FFF8DE;
+  color: #8B9DB6;
 }
 
 button {
@@ -106,7 +107,7 @@ button:hover {
 }
 
 #container > div button {
-  margin: 0 5px;
+  margin: 5px;
   padding: 5px 10px;
   font-size: 0.9rem;
   background-color: #A6AEBF;
@@ -129,3 +130,4 @@ button:hover {
   color: rgb(133, 126, 126);
   font-family: Pacifico;
 }
+
