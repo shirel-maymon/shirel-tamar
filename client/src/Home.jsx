@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import GetRequest from './GetRequest';
+import Folder from './folder';
 import ShowFile from './ShowFile';
 function Home(props) {
-  const [arrayFiles, setArrayFiles]=useState([])
+  const [arrayFolders, setArrayFolders]=useState([])
   const [error, setError]=useState(null)
 
   useEffect(()=>{
-  getFiles()
+    getFolders()
   },[])
-  async function getFiles(){
+  async function getFolders(){
     const url= `http://localhost:4001/home/${props.userName}`
     let array=await GetRequest(url)
     console.log('array: ', array);
    if(array!=='something went wrong')
-    setArrayFiles(await GetRequest(url))
+    setArrayFolders(await GetRequest(url))
     else{
       setError("error")
   
     }
  }
+ console.log(arrayFolders)
   
   return (
-    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<ShowFile setArrayFiles={setArrayFiles} arrayFiles={arrayFiles} userName={props.userName}file={file}/>))}  </div>
-  )
+    <>
+    <h1>hii</h1>
+    {error!==null?error:
+    <div id='container'>{Array.isArray(arrayFolders) && arrayFolders.map((folder,i) => (<Folder userName={props.userName} folder={folder} arrayFolders={arrayFolders} setArrayFolders={setArrayFolders}/>))}  </div>
+  }
+  </>)
 }
 export default Home;

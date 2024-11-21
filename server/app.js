@@ -9,6 +9,7 @@ var showFile =require('./routes/showFile')
 var register = require('./routes/register')
 var home = require('./routes/home')
 var app = express();
+var showFolder = require('./routes/showFolder')
 const cors = require("cors");
 app.use(cors())
 app.use(logger('dev'));
@@ -20,6 +21,8 @@ app.use('/logIn', LogIn);
 app.use('/register', register)
 app.use('/home', home)
 app.use('/showFile', showFile)
+app.use('/showFolder', showFolder)
+
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
