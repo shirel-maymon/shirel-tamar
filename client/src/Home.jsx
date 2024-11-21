@@ -19,11 +19,6 @@ function Home(props) {
   
     }
  }
- 
-
-
-
- 
   
   return (
     <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<showFile file={file}/>))}  </div>
