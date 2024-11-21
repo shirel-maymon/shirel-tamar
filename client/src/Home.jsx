@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import GetRequest from './GetRequest';
-import showFile from './showFile';
+import ShowFile from './ShowFile';
 function Home(props) {
   const [arrayFiles, setArrayFiles]=useState([])
   const [error, setError]=useState(null)
@@ -21,7 +21,7 @@ function Home(props) {
  }
   
   return (
-    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<showFile file={file}/>))}  </div>
+    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<ShowFile file={file}/>))}  </div>
   )
 }
 export default Home;

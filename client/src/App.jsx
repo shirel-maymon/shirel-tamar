@@ -6,6 +6,7 @@ import LogIn from './LogIn'
 import Resgister from './Register'
 import Home from './Home'
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import ShowFile from './ShowFile'
 function App() {
   const [userName, setUserName] = useState("");
 
