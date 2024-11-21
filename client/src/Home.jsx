@@ -24,10 +24,20 @@ function Home(props) {
   
   return (
     <>
-    <h1>hii</h1>
+    <body>
+  <div id="navbar">
+    <div className='font' id="site-name">shimar Drive</div>
+    <div className='font' id="user-name">Hello, {props.userName}</div>
+  </div>
+  <div id="container">
+  <h1>All your files and folders:</h1>
     {error!==null?error:
     <div id='container'>{Array.isArray(arrayFolders) && arrayFolders.map((folder,i) => (<Folder userName={props.userName} folder={folder} arrayFolders={arrayFolders} setArrayFolders={setArrayFolders}/>))}  </div>
   }
+  </div>
+</body>
+
+
   </>)
 }
 export default Home;

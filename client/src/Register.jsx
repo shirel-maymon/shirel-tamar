@@ -36,8 +36,9 @@ const [error, setError] =useState(null)
 
   return (
     <>
+    <h3 className="font">sign up:</h3>
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className="font">
         Enter your user-name:
         <input
           type="text"
@@ -48,7 +49,7 @@ const [error, setError] =useState(null)
         />
       </label>
       <br/>
-      <label>
+      <label className="font">
         Enter your password:
         <input
           type="password"
@@ -58,7 +59,7 @@ const [error, setError] =useState(null)
         />
       </label>
       <br/>
-      <label>
+      <label className="font">
         Verify your password:
         <input
           type="password"
