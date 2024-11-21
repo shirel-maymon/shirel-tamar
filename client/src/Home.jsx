@@ -21,7 +21,7 @@ function Home(props) {
  }
   
   return (
-    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<ShowFile userName={props.userName}file={file}/>))}  </div>
+    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<ShowFile setArrayFiles={setArrayFiles} arrayFiles={arrayFiles} userName={props.userName}file={file}/>))}  </div>
   )
 }
 export default Home;

@@ -1,23 +1,23 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import GetRequest from './GetRequest'
+import DeleteRequest from './DeleteRequest'
 
 export default function ShowFile(props) {
   const [contentFile, setContentFile]=useState()
   const [err, setErr]=useState(null)
   const [contentClick, setContentClick]=useState(false)
   const [newFolderName, setNewFolderName] = useState('');
-  // const [newFileName, setNewFileName] = useState(''); 
+  const [deleteFile, setDeleteFile]= useState(null)
+  const [deleteClick, setDeleteClick]=useState(false)
+ 
 
 
     async function getcontent(){
       const url= `http://localhost:4001/showFile/${props.userName}/${props.file}`
       const content=await fetch(url)
       const text = await content.text()
-      console.log('content: ', text);
-      console.log('content type: ', typeof text);
-   
-     if(content!=='something went wrong')
+      if(content!=='something went wrong')
         setContentFile(text)
       else{
         setErr("error")
@@ -25,81 +25,52 @@ export default function ShowFile(props) {
       }
       setContentClick(true);
    }
-    }
+    
 
     const deleteContent = async () => {
-      try {
-        const url = `http://localhost:4001/delete/${props.file}`;
-        const response = await fetch(url, {
-          method: 'DELETE',
-        });
-  
-        if (response.ok) {
-          console.log('File deleted:', props.file);
-          setContentFile(null);
-          setContentClick(false);
-        } else {
-          setErr('Failed to delete file');
-        }
-      } catch (error) {
-        setErr('Error deleting file');
-        console.error(error);
-      }
+       const url = `http://localhost:4001/showFile/${props.userName}/${props.file}`
+       const deleted=  await  DeleteRequest(url)
+       if(deleted==='File deleted'){
+         setDeleteFile("המחיקה הושלמה בהצלחה")
+         props.setArrayFiles(props.arrayFiles.filter((file)=>file!==props.file))
+       }
+       else
+        setDeleteFile("משהו השתבש במהלך המחיקה")
+       
+       setDeleteClick(true);
+
     };
 
-    const renameFolder = async () => {
-      try {
-        const url = `http://localhost:4001/renameFolder/${props.file}`; 
-        const response = await fetch(url, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ newFolderName }), 
-        });
-  
-        if (response.ok) {
-          console.log('Folder renamed to:', newFolderName);
-          setNewFolderName(''); 
-        } else {
-          setErr('Failed to rename folder');
-        }
-      } catch (error) {
-        setErr('Error renaming folder');
-        console.error(error);
-      }
-    };
-  
-
-    // const renameFile = async () => {
+    // const renameFolder = async () => {
     //   try {
-    //     const url = `http://localhost:4001/rename/${props.file}`;
+    //     const url = `http://localhost:4001/renameFolder/${props.file}`; 
     //     const response = await fetch(url, {
-    //       method: 'PUT', // או POST לפי מה שתומך השרת
+    //       method: 'PUT',
     //       headers: {
     //         'Content-Type': 'application/json',
     //       },
-    //       body: JSON.stringify({ newFileName }), // שליחת השם החדש לשרת
+    //       body: JSON.stringify({ newFolderName }), 
     //     });
   
     //     if (response.ok) {
-    //       console.log('File renamed to:', newFileName);
-    //       setContentFile(null);
-    //       setContentClick(false);
+    //       console.log('Folder renamed to:', newFolderName);
+    //       setNewFolderName(''); 
     //     } else {
-    //       setErr('Failed to rename file');
+    //       setErr('Failed to rename folder');
     //     }
     //   } catch (error) {
-    //     setErr('Error renaming file');
+    //     setErr('Error renaming folder');
     //     console.error(error);
     //   }
     // };
+  
+
 
     return (
       <>
         <div>{props.file}</div>
         
-        <div>
+        {/* <div>
           <input
             type="text"
             value={newFolderName}
@@ -107,10 +78,11 @@ export default function ShowFile(props) {
             placeholder="Enter new folder name"
           />
           <button onClick={renameFolder}>Rename Folder</button>
-        </div>
+        </div> */}
         
-        <button onClick={handleShowContent}>Show Content</button>
-        
+        <button onClick={getcontent}>Show Content</button>
+        <button onClick={deleteContent}>Delete</button>
+        {deleteClick&&alert(deleteFile)}
         {contentClick && (
           <>
             {err ? (
@@ -118,7 +90,6 @@ export default function ShowFile(props) {
             ) : (
               <>
                 <div>{contentFile}</div>
-                <button onClick={deleteContent}>Delete</button>
               </>
             )}
           </>
@@ -126,3 +97,4 @@ export default function ShowFile(props) {
       </>
     );
   }
+  
