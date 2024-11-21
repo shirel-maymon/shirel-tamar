@@ -14,6 +14,27 @@ function contactExsit(name, folder, file) {
    
     return true;
 }
+router.post('/:name/:folder', (req, res,) => {
+    const isExist = contactExsit(req.params.name,req.params.folder, req.body.addfile)
+    
+    
+    if (isExist) {
+        return res.status(400).send("file is already exist")
+    }
+    
+    fs.appendFile(`./contacts/${req.params.name}/${req.params.folder}/${req.body.addfile}`, `hii${req.body.addContent}` , function (err) {
+        if (err)
+           { console.log('err: ', err);
+            res.status(400).send("file did not renamed");}
+        else{
+            res.send(req.body.addfile)
+
+        }
+      });
+
+    
+});
+
 
 router.get('/:name/:folder/:file', (req, res,) => {
     const isExist = contactExsit(req.params.name,req.params.folder, req.params.file)
