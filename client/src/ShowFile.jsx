@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import GetRequest from './GetRequest'
 import DeleteRequest from './DeleteRequest'
 
+import patchRequest from './PatchtRequest'
+
 export default function ShowFile(props) {
   const [contentFile, setContentFile]=useState()
   const [err, setErr]=useState(null)
@@ -10,6 +12,9 @@ export default function ShowFile(props) {
   const [newFolderName, setNewFolderName] = useState('');
   const [deleteFile, setDeleteFile]= useState(null)
   const [deleteClick, setDeleteClick]=useState(false)
+  const [renameFile, setRenameFile]= useState(null)
+  const [renameClick, setRenameClick]=useState(false)
+  const [submitRename, setSubmitRename]=useState(false)
  
 
 
@@ -37,52 +42,59 @@ export default function ShowFile(props) {
        else
         setDeleteFile("משהו השתבש במהלך המחיקה")
        
-       setDeleteClick(true);
-
+      
+        setDeleteClick(true);
     };
 
-    // const renameFolder = async () => {
-    //   try {
-    //     const url = `http://localhost:4001/renameFolder/${props.file}`; 
-    //     const response = await fetch(url, {
-    //       method: 'PUT',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify({ newFolderName }), 
-    //     });
-  
-    //     if (response.ok) {
-    //       console.log('Folder renamed to:', newFolderName);
-    //       setNewFolderName(''); 
-    //     } else {
-    //       setErr('Failed to rename folder');
-    //     }
-    //   } catch (error) {
-    //     setErr('Error renaming folder');
-    //     console.error(error);
-    //   }
-    // };
-  
+    const onsubmitRename = async () => {
+      console.log("renaming")
+        let obj={newname:newFolderName}
+        const url =  `http://localhost:4001/showFile/${props.userName}/${props.file}`; 
+        const renamed=  await  patchRequest(url,obj)
+        console.log('renamed: ', renamed);
+        if(renamed==='File renamed'){
+          console.log("here")
+          setRenameFile("השינוי הושלם בהצלחה")
+          props.setArrayFiles((prev) => {
+            const updatedArray = [...prev];
+            updatedArray[props.i] = newFolderName; 
+            return updatedArray
+          }); 
+        }
+        else
+        setRenameFile("משהו השתבש במהלך השינו")
+      
+      setSubmitRename(true);
+      setRenameClick(false)
+      
+      
+    }
+    
+    console.log(props.arrayFiles)  
 
 
     return (
       <>
         <div>{props.file}</div>
-        
-        {/* <div>
+        {renameClick&&
+        <div>
           <input
             type="text"
             value={newFolderName}
             onChange={(e) => setNewFolderName(e.target.value)}
             placeholder="Enter new folder name"
           />
-          <button onClick={renameFolder}>Rename Folder</button>
-        </div> */}
+          <button onClick={onsubmitRename}>submit</button>
+       
+        
+        </div>
+}
         
         <button onClick={getcontent}>Show Content</button>
         <button onClick={deleteContent}>Delete</button>
+        <button onClick={()=>  setRenameClick(true)}>rename</button>
         {deleteClick&&alert(deleteFile)}
+        {submitRename&&alert(renameFile)}
         {contentClick && (
           <>
             {err ? (

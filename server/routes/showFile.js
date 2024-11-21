@@ -32,13 +32,11 @@ router.get('/:name/:file', (req, res,) => {
 });
 router.delete('/:name/:file', (req, res,) => {
     const isExist = contactExsit(req.params.name, req.params.file)
-    // const deleted=false
     if (!isExist) {
         return res.status(400).send("file not exist")
     }
     fs.rm(`./contacts/${req.params.name}/${req.params.file}`, function (err) {
         if (err) res.status(400).send("file did not deleted");
-        // delted=true;
         res.send("deleted");
        
       });
@@ -46,4 +44,21 @@ router.delete('/:name/:file', (req, res,) => {
 
     
 });
+router.patch('/:name/:file', (req, res,) => {
+    const isExist = contactExsit(req.params.name, req.params.file)
+    console.log('req.body: ', req.body);
+    if (!isExist) {
+        return res.status(400).send("file not exist")
+    }
+    fs.rename(`./contacts/${req.params.name}/${req.params.file}`, `./contacts/${req.params.name}/${req.body.newname}`, function (err) {
+        if (err) res.status(400).send("file did not renamed");
+        res.send("file renamed");
+       
+      });
+
+   
+
+    
+});
+
 module.exports = router;

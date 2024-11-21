@@ -1,21 +1,25 @@
 
 const patchRequest = async (url, rename) => {
+    console.log('url: ', url);
     const updateOption = {
         method: 'PATCH',
         headers: {
             "Content-Type": "application/json"
         },
-        body: rename
+        body: JSON.stringify(rename)
     }
     try{
-        const request = await fetch(url, postOptions)
-        if(!request.ok)throw Error ("something went wrong")
-            const  requestJSON= await request.json();
-            return requestJSON;
-
-    }
-    catch(err){
-     return err.message
+        const response= await fetch(url, updateOption)
+        if (response.ok) {
+            console.log("hhhh")
+            return 'File renamed';
+    
+        } else {
+            throw Error("something went wrong")
+        }
+    } catch (error) {
+    
+        return error;
     }
 }
 export default patchRequest;

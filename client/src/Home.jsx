@@ -3,6 +3,7 @@ import GetRequest from './GetRequest';
 import ShowFile from './ShowFile';
 function Home(props) {
   const [arrayFiles, setArrayFiles]=useState([])
+  console.log('arrayFiles: ', arrayFiles);
   const [error, setError]=useState(null)
 
   useEffect(()=>{
@@ -21,7 +22,7 @@ function Home(props) {
  }
   
   return (
-    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file) => (<ShowFile setArrayFiles={setArrayFiles} arrayFiles={arrayFiles} userName={props.userName}file={file}/>))}  </div>
+    <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file,i) => (<ShowFile i={i} setArrayFiles={setArrayFiles} arrayFiles={arrayFiles} userName={props.userName}file={file}/>))}  </div>
   )
 }
 export default Home;
