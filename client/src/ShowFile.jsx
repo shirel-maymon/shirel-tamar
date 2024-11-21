@@ -19,7 +19,9 @@ export default function ShowFile(props) {
 
 
     async function getcontent(){
-      const url= `http://localhost:4001/showFile/${props.userName}/${props.file}`
+      const url= `http://localhost:4001/showFile/${props.userName}/${props.folder}/${props.file}`
+      console.log('url: ', url);
+      
       const content=await fetch(url)
       const text = await content.text()
       if(content!=='something went wrong')
@@ -33,7 +35,7 @@ export default function ShowFile(props) {
     
 
     const deleteContent = async () => {
-       const url = `http://localhost:4001/showFile/${props.userName}/${props.file}`
+       const url = `http://localhost:4001/showFile/${props.userName}/${props.folder}/${props.file}`
        const deleted=  await  DeleteRequest(url)
        if(deleted==='File deleted'){
          setDeleteFile("המחיקה הושלמה בהצלחה")
@@ -49,7 +51,7 @@ export default function ShowFile(props) {
     const onsubmitRename = async () => {
       console.log("renaming")
         let obj={newname:newFolderName}
-        const url =  `http://localhost:4001/showFile/${props.userName}/${props.file}`; 
+        const url =  `http://localhost:4001/showFile/${props.userName}/${props.folder}/${props.file}`; 
         const renamed=  await  patchRequest(url,obj)
         console.log('renamed: ', renamed);
         if(renamed==='File renamed'){
