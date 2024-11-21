@@ -20,6 +20,8 @@ function App() {
       <Routes>
         <Route path='/'>
         <Route index element={<LogIn userName={userName} setUserName={setUserName}/>} />
+        {/* <Route index element={<Resgister userName={userName} setUserName={setUserName}/>} /> */}
+
 
         <Route path="home" element={<Home userName={userName} setUserName={setUserName}/>}/>
         <Route path = "ShowFiles" element={<ShowFile />}/>

@@ -70,9 +70,8 @@ function LogIn(props) {
             <br />
             <br />
           </div>
-          {/* <NavLink to="/SignUp" className="button">
-            Sign Up
-          </NavLink> */}
+          {/* <button onClick={navigate("register")}></button> */}
+
         </form>
       </div>
       <div>{error}</div>
