@@ -15,6 +15,8 @@ function contactExsit(name, folder, file) {
     return true;
 }
 router.post('/:name/:folder', (req, res,) => {
+    
+    console.log('req.body: ', req.body);
     const isExist = contactExsit(req.params.name,req.params.folder, req.body.addfile)
     
     
@@ -22,7 +24,7 @@ router.post('/:name/:folder', (req, res,) => {
         return res.status(400).send("file is already exist")
     }
     
-    fs.appendFile(`./contacts/${req.params.name}/${req.params.folder}/${req.body.addfile}`, `hii${req.body.addContent}` , function (err) {
+    fs.appendFile(`./contacts/${req.params.name}/${req.params.folder}/${req.body.addfile}`, req.body.addcontent , function (err) {
         if (err)
            { console.log('err: ', err);
             res.status(400).send("file did not renamed");}
@@ -33,7 +35,7 @@ router.post('/:name/:folder', (req, res,) => {
       });
 
     
-});
+})
 
 
 router.get('/:name/:folder/:file', (req, res,) => {
