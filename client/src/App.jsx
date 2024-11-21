@@ -22,6 +22,8 @@ function App() {
         <Route index element={<LogIn userName={userName} setUserName={setUserName}/>} />
 
         <Route path="home" element={<Home userName={userName} setUserName={setUserName}/>}/>
+        <Route path = "ShowFiles" element={<ShowFile />}/>
+        
         </Route>
 
         {/* <Route path="*" element={<NoPage />} /> */}

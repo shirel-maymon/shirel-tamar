@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import GetRequest from './GetRequest'
 
 export default function ShowFile(props) {
   const [contentFile, setContentFile]=useState()
@@ -9,18 +10,15 @@ export default function ShowFile(props) {
   // const [newFileName, setNewFileName] = useState(''); 
 
 
-    function handleShowContent(){
-
-  useEffect(()=>{
-    getcontent()
-    },[])
     async function getcontent(){
       const url= `http://localhost:4001/showFile/${props.userName}/${props.file}`
-      let content=await GetRequest(url)
-      console.log('content: ', content);
+      const content=await fetch(url)
+      const text = await content.text()
+      console.log('content: ', text);
+      console.log('content type: ', typeof text);
    
      if(content!=='something went wrong')
-        setContentFile(content)
+        setContentFile(text)
       else{
         setErr("error")
     
