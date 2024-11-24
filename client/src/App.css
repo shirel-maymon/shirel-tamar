@@ -75,7 +75,7 @@ button {
   padding: 10px;
   margin-bottom: 15px;
   background-color: #A6AEBF;
-  color: white;
+  color: #825B32;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -92,19 +92,7 @@ button:hover {
   margin: 10px auto;
 }
 
-#container > div {
-  background-color: #d0dbf0;
-  color: black;
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: space-between;
-  align-items: center;
-}
+
 
 #container > div button {
   margin: 5px;
