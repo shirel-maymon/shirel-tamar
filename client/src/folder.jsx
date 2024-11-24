@@ -73,16 +73,17 @@ function Folder(props) {
                   placeholder="Enter new content"
                 />
               <button onClick={onsubmitAdd}>submit</button>
-    
+            
     
             </div>}
-         <button onClick={() => setAddFile(true)}>add file</button>
          {addcomplited&&alert(addwork)}
             <div>{props.folder}</div>
             <button onClick={() => setShowfile(true)}>show files</button>
-            {showfile &&
+            {showfile &&<>
+            
+                <button onClick={() => setAddFile(true)}>add file</button>
                 <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file, i) => (<ShowFile i={i} setArrayFiles={setArrayFiles} folder={props.folder} arrayFiles={arrayFiles} userName={props.userName} file={file} />))}  </div>
-            } </>)
+                </> } </>)
 }
 export default Folder;
 

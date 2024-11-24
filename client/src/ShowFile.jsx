@@ -78,6 +78,7 @@ export default function ShowFile(props) {
   return (
     <>
       <div>{props.file}</div>
+    
       {renameClick &&
      <div>
            <input
@@ -94,7 +95,7 @@ export default function ShowFile(props) {
       
       }
 
-      
+      <br/>
       <button onClick={getcontent}>Show Content</button>
       <button onClick={deleteContent}>Delete</button>
       <button onClick={() => setRenameClick(true)}>rename</button>

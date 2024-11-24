@@ -70,7 +70,7 @@ function LogIn(props) {
             <br />
             <br />
           </div>
-          {/* <button onClick={navigate("register")}></button> */}
+          <button onClick={()=>navigate("register")}>להרשמה</button>
 
         </form>
       </div>

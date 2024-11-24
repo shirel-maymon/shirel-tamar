@@ -50,7 +50,7 @@ h1 {
 }
 
 form {
-  background-color: #D0E8C5;
+  background-color: #c3ccbe;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,7 @@ input[type="text"], input[type="password"] {
   border: 1px solid #A6AEBF;
   border-radius: 5px;
   background-color: #FFF8DE;
-  color: #8B9DB6;
+  color: #182b42;
 }
 
 button {
@@ -93,7 +93,7 @@ button:hover {
 }
 
 #container > div {
-  background-color: #D0E8C5;
+  background-color: #d0dbf0;
   color: black;
   margin-bottom: 10px;
   padding: 15px;
@@ -134,7 +134,7 @@ button:hover {
 #navbar {
   width: 96.5vw;
   background-color: #A6AEBF;
-  color: white;
+  color: rgb(204, 85, 85);
   display: flex;
   justify-content: space-between;
   align-items: center;
