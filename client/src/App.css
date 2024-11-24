@@ -10,20 +10,6 @@ body {
   min-height: 100vh;
 }
 
-/* #navbar {
-  width: 97vw; 
-  background-color: #A6AEBF;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-} */
-
 #site-name {
   font-size: 1.2rem;
   font-weight: bold;
@@ -44,7 +30,7 @@ body {
 }
 
 h1 {
-  color: #A6AEBF;
+  color: #7e9274;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -91,8 +77,6 @@ button:hover {
   width: 60%;
   margin: 10px auto;
 }
-
-
 
 #container > div button {
   margin: 5px;
