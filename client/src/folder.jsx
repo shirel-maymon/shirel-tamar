@@ -78,11 +78,11 @@ function Folder(props) {
             </div>}
          {addcomplited&&alert(addwork)}
             <div>{props.folder}</div>
-            <button onClick={() => setShowfile(true)}>show files</button>
+            <button onClick={() => setShowfile(!showfile)}>show files</button>
             {showfile &&<>
             
                 <button onClick={() => setAddFile(true)}>add file</button>
-                <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file, i) => (<ShowFile i={i} setArrayFiles={setArrayFiles} folder={props.folder} arrayFiles={arrayFiles} userName={props.userName} file={file} />))}  </div>
+                <div id='container'>{Array.isArray(arrayFiles) && arrayFiles.map((file, i) => (<ShowFile i={i} setArrayFiles={setArrayFiles} folder={props.folder} arrayFiles={arrayFiles} userName={props.userName} file={file} setShowfile={setShowfile}/>))}  </div>
                 </> } </>)
 }
 export default Folder;

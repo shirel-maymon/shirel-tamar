@@ -111,6 +111,10 @@ button:hover {
   padding: 5px 10px;
   font-size: 0.9rem;
   background-color: #A6AEBF;
+  width: fit-content;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #error {

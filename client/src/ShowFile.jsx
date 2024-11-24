@@ -31,7 +31,7 @@ export default function ShowFile(props) {
       setErr("error")
 
     }
-    setContentClick(true);
+    setContentClick(!contentClick);
   }
 
 
@@ -77,6 +77,7 @@ export default function ShowFile(props) {
 
   return (
     <>
+   
       <div>{props.file}</div>
     
       {renameClick &&
@@ -98,7 +99,7 @@ export default function ShowFile(props) {
       <br/>
       <button onClick={getcontent}>Show Content</button>
       <button onClick={deleteContent}>Delete</button>
-      <button onClick={() => setRenameClick(true)}>rename</button>
+      <button onClick={() => setRenameClick(!renameClick)}>rename</button>
       {deleteClick && alert(deleteFile)}
       {submitRename && alert(renameFile)}
 
@@ -108,7 +109,7 @@ export default function ShowFile(props) {
             <div>{err}</div>
           ) : (
             <>
-              <div>{contentFile}</div>
+              <p>{contentFile}</p>
             </>
           )}
         </>
